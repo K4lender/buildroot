@@ -2996,6 +2996,10 @@ F:	package/python-flask-login/
 F:	package/qt5/qt5charts/
 F:	package/wlr-randr/
 
+N:	Selman Çetin <selman.cetin@t3gemstone.org>
+F:	board/t3/t3-gem-o1/
+F:	configs/t3_gem_o1_defconfig
+
 N:	Semyon Kolganov <semenak94@mail.ru>
 F:	package/fmt/
 F:	package/lua-resty-http/
