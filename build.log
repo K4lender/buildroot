@@ -1,0 +1,20 @@
+[7m>>> linux c0d426f64f22aa7ddba37b5552dd5b2013654990 Building[27m
+GIT_DIR=. PATH="/home/cetin/Downloads/buildroot/output/host/bin:/home/cetin/Downloads/buildroot/output/host/sbin:/home/cetin/.nix-profile/bin:/nix/var/nix/profiles/default/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin" PKG_CONFIG="/home/cetin/Downloads/buildroot/output/host/bin/pkg-config" PKG_CONFIG_SYSROOT_DIR="/" PKG_CONFIG_ALLOW_SYSTEM_CFLAGS=1 PKG_CONFIG_ALLOW_SYSTEM_LIBS=1 PKG_CONFIG_LIBDIR="/home/cetin/Downloads/buildroot/output/host/lib/pkgconfig:/home/cetin/Downloads/buildroot/output/host/share/pkgconfig" BR_BINARIES_DIR=/home/cetin/Downloads/buildroot/output/images /usr/bin/make -j9 HOSTCC="/usr/bin/gcc -O2 -isystem /home/cetin/Downloads/buildroot/output/host/include -L/home/cetin/Downloads/buildroot/output/host/lib -Wl,-rpath,/home/cetin/Downloads/buildroot/output/host/lib" ARCH=arm64 KCFLAGS="-Wno-attribute-alias" INSTALL_MOD_PATH=/home/cetin/Downloads/buildroot/output/target CROSS_COMPILE="/home/cetin/Downloads/buildroot/output/host/bin/aarch64-buildroot-linux-gnu-" WERROR=0 REGENERATE_PARSERS=1 DEPMOD=/home/cetin/Downloads/buildroot/output/host/sbin/depmod INSTALL_MOD_STRIP=1 -C /home/cetin/Downloads/buildroot/output/build/linux-c0d426f64f22aa7ddba37b5552dd5b2013654990 all
+  SYNC    include/config/auto.conf.cmd
+  CALL    scripts/checksyscalls.sh
+  OVL     arch/arm64/boot/dts/ti/k3-am62a7-sk-ub954-evm-ov2312.dtb
+  OVL     arch/arm64/boot/dts/ti/k3-am642-evm-nand.dtb
+  OVL     arch/arm64/boot/dts/ti/k3-am6548-iot2050-advanced-m2-bkey-ekey-pcie.dtb
+  OVL     arch/arm64/boot/dts/ti/k3-am6548-iot2050-advanced-m2-bkey-usb3.dtb
+  OVL     arch/arm64/boot/dts/ti/k3-am654-gp-evm.dtb
+  OVL     arch/arm64/boot/dts/ti/k3-am654-evm.dtb
+  OVL     arch/arm64/boot/dts/ti/k3-j7200-evm.dtb
+  OVL     arch/arm64/boot/dts/ti/k3-j721e-evm.dtb
+  OVL     arch/arm64/boot/dts/ti/k3-j721s2-evm.dtb
+make[4]: *** No rule to make target 'arch/arm64/boot/dts/ti/k3-am67a-beagley-ai-edgeai-apps.dtbo', needed by 'arch/arm64/boot/dts/ti/'.  Stop.
+make[4]: *** Waiting for unfinished jobs....
+make[3]: *** [scripts/Makefile.build:478: arch/arm64/boot/dts/ti] Error 2
+make[2]: *** [Makefile:1417: dtbs] Error 2
+make[2]: *** Waiting for unfinished jobs....
+make[1]: *** [package/pkg-generic.mk:273: /home/cetin/Downloads/buildroot/output/build/linux-c0d426f64f22aa7ddba37b5552dd5b2013654990/.stamp_built] Error 2
+make: *** [Makefile:83: _all] Error 2
