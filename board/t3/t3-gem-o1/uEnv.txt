@@ -1,0 +1,6 @@
+# Environment file for T3 Gemstone O1 to override U-Boot default variables
+rootfstype=ext4
+
+# Override U-boot args to force ext4
+args_eth=setenv bootargs console=${console} ${optargs} root=/dev/mmcblk0p2 rw rootfstype=${rootfstype} bootpart=/dev/mmcblk0p1 firstboot=1 init_fatal_sh=1;
+args_mmc=setenv bootargs console=${console} ${optargs} root=/dev/mmcblk${mmcdev}p2 rw rootfstype=${rootfstype} rootwait bootpart=/dev/mmcblk${mmcdev}p1 firstboot=1 init_fatal_sh=1;
