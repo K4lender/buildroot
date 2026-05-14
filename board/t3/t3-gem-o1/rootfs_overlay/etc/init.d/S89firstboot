@@ -1,0 +1,50 @@
+#!/bin/sh
+# S89firstboot: Resize root partition and filesystem on first boot via uEnv.txt params
+
+case "$1" in
+  start)
+    if ! grep -q "firstboot=1" /proc/cmdline; then
+        exit 0
+    fi
+
+    printf "\nLooks like system is booting for the first time\n" >/dev/console
+
+    BOOTPART=$(cat /proc/cmdline | tr ' ' '\n' | grep '^bootpart=' | cut -d= -f2)
+    ROOT_DEV=$(cat /proc/cmdline | tr ' ' '\n' | grep '^root=' | cut -d= -f2)
+
+    if [ -z "$BOOTPART" ] || [ -z "$ROOT_DEV" ]; then
+        echo "Error: bootpart or root param missing in cmdline."
+        exit 1
+    fi
+
+    DRIVE=$(echo $ROOT_DEV | sed 's/p[0-9]*$//')
+    PART=$(echo $ROOT_DEV | grep -o '[0-9]*$')
+
+    echo "Expanding root partition on '${DRIVE}'..."
+    parted -m -s "$DRIVE" resizepart "$PART" 100% > /dev/null
+    partprobe "$DRIVE" || true
+
+    echo "Expanding root filesystem on '${ROOT_DEV}'..."
+    resize2fs "$ROOT_DEV"
+
+    echo "Disabling firstboot in uEnv.txt..."
+    boot_mntpoint="/tmp/bootmnt"
+    mkdir -p "$boot_mntpoint"
+
+    if mount "$BOOTPART" "$boot_mntpoint"; then
+        sed -i 's/firstboot=1/firstboot=0/g' "$boot_mntpoint/uEnv.txt"
+        umount "$boot_mntpoint"
+        echo "Operation is successful."
+    else
+        echo "Error: Unable to mount boot partition to disable firstboot"
+    fi
+    ;;
+  stop)
+    ;;
+  *)
+    echo "Usage: $0 {start|stop}"
+    exit 1
+    ;;
+esac
+
+exit 0
